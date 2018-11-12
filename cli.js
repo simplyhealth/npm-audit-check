@@ -5,11 +5,11 @@ const chalk = require('chalk')
 
 program
   .version('1.0.0')
-  .option('-i, --info <info policy>', 'Set policy for info vulnerabilities', parseInt)
-  .option('-l, --low <low policy>', 'Set policy for low vulnerabilities', parseInt)
-  .option('-m, --moderate <moderate policy>', 'Set policy for moderate vulnerabilities', parseInt)
-  .option('-h, --high <high policy>', 'Set policy for high vulnerabilities', parseInt)
-  .option('-c, --critical <critical policy>', 'Set policy for critical vulnerabilities', parseInt)
+  .option('-i, --info <info policy>', 'Set the maximum number of info vulnerabilities allowed', parseInt)
+  .option('-l, --low <low policy>', 'Set the maximum number of low vulnerabilities allowed', parseInt)
+  .option('-m, --moderate <moderate policy>', 'Set the maximum number of moderate vulnerabilities allowed', parseInt)
+  .option('-h, --high <high policy>', 'Set the maximum number of high vulnerabilities allowed', parseInt)
+  .option('-c, --critical <critical policy>', 'Set the maximum number of critical vulnerabilities allowed', parseInt)
   .option('-t, --test', 'Report on level of vulnerabilities but return a success exit code')
   .parse(process.argv);
 
