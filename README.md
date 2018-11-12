@@ -5,7 +5,9 @@ Designed to be used within a build process to interrogate the output from ```npm
 
 ## Use
 
-```npm-audit-check [options]```
+```bash
+npm-audit-check [options]
+```
 
 | Option | Optional? | Use |
 | ------ | --------- | --- |
@@ -18,16 +20,47 @@ Designed to be used within a build process to interrogate the output from ```npm
 | -t, --test | Yes | Report on level of vulnerabilities but return a success exit code |
 | --help | Yes | Output usage information |
 
+You can also create a `.auditrc` file with your security policy or add it to your `package.json` file;
+
+### .auditrc
+```json
+{
+  "policy": {
+    "critical": 10,
+    "high": 5
+  }
+}
+```
+
+### package.json
+```json
+...
+  "audit": {
+    "policy": {
+      "critical": 10,
+      "high": 5
+    }
+  }
+```
+
+**Note:** The security policy is resolved in the following priority; command line arguments > `package.json` > `.auditrc`
+
 **Note:** Not specifying any maximum vulnerabilities, will mean that npm-audit-check will not perform any checks.
 
 ### Examples
-```npm-audit-check --critical 0```<br/>
+```bash
+npm-audit-check --critical 0
+```
 This will return an exit code set to 1 (error) if npm audit reports any critical vulnerabilities
 
-```npm-audit-check --critical 0 --high 5 --moderate 20```<br/>
+```bash
+npm-audit-check --critical 0 --high 5 --moderate 20
+```
 This will return an exit code set to 1 (error) if npm audit reports any critical vulnerabilities or more than 5 high vulnerabilities or more than 20 moderate vulnerabilities.
 
-```npm-audit-check --critical 0 --high 5 --moderate 20 -t```<br/>
+```bash
+npm-audit-check --critical 0 --high 5 --moderate 20 -t
+```
 As above but the -t option means that the vulnerabilities will be reported but the check will return an exit code set to 0 (success)
 
 ### Sample Output
