@@ -56,10 +56,15 @@ audit.on('close', (code) => {
   }
 
   if (vulnerable) {
+    console.error("---------------------------------")
     console.error("Run npm audit to get more details")
+    console.error("---------------------------------")
     if (!program.test) {
-      console.log('Exiting with status code 1')
       process.exit(1)
     }
+  } else {
+    console.log("---------------------------------------------------")
+    console.log("No vulnerabilities found above the levels specified")
+    console.log("---------------------------------------------------")
   }
 });
