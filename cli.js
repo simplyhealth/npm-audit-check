@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander');
-const { spawn } = require('child_process')
+const { spawn } = require('child_process');
+const loadConfig = require('./lib/load-config');
 
 program
   .version('1.0.0')
@@ -12,6 +13,7 @@ program
   .parse(process.argv);
 
 let audit = spawn('npm', ['audit', '--json'])
+let config = loadConfig(program)
 
 let output = '';
 
@@ -28,28 +30,28 @@ audit.on('close', (code) => {
 
   let vulnerable = false
 
-  if (program.info !== undefined && output.metadata.vulnerabilities.info > program.info) {
-    console.log(`There are ${output.metadata.vulnerabilities.info} info vulnerabilities which is more than your allowed policy of ${program.info} `)
+  if (config.policy.info !== undefined && output.metadata.vulnerabilities.info > config.policy.info) {
+    console.log(`There are ${output.metadata.vulnerabilities.info} info vulnerabilities which is more than your allowed policy of ${config.policy.info} `)
     vulnerable = true
   }
 
-  if (program.low !== undefined && output.metadata.vulnerabilities.low > program.low) {
-    console.log(`There are ${output.metadata.vulnerabilities.low} low vulnerabilities which is more than your allowed policy of ${program.low} `)
+  if (config.policy.low !== undefined && output.metadata.vulnerabilities.low > config.policy.low) {
+    console.log(`There are ${output.metadata.vulnerabilities.low} low vulnerabilities which is more than your allowed policy of ${config.policy.low} `)
     vulnerable = true
   }
 
-  if (program.moderate !== undefined && output.metadata.vulnerabilities.moderate > program.moderate) {
-    console.log(`There are ${output.metadata.vulnerabilities.moderate} moderate vulnerabilities which is more than your allowed policy of ${program.moderate} `)
+  if (config.policy.moderate !== undefined && output.metadata.vulnerabilities.moderate > config.policy.moderate) {
+    console.log(`There are ${output.metadata.vulnerabilities.moderate} moderate vulnerabilities which is more than your allowed policy of ${config.policy.moderate} `)
     vulnerable = true
   }
 
-  if (program.high !== undefined && output.metadata.vulnerabilities.high > program.high) {
-    console.log(`There are ${output.metadata.vulnerabilities.high} high vulnerabilities which is more than your allowed policy of ${program.high} `)
+  if (config.policy.high !== undefined && output.metadata.vulnerabilities.high > config.policy.high) {
+    console.log(`There are ${output.metadata.vulnerabilities.high} high vulnerabilities which is more than your allowed policy of ${config.policy.high} `)
     vulnerable = true
   }
 
-  if (program.critical !== undefined && output.metadata.vulnerabilities.critical > program.critical) {
-    console.log(`There are ${output.metadata.vulnerabilities.critical} critical vulnerabilities which is more than your allowed policy of ${program.critical} `)
+  if (config.policy.critical !== undefined && output.metadata.vulnerabilities.critical > config.policy.critical) {
+    console.log(`There are ${output.metadata.vulnerabilities.critical} critical vulnerabilities which is more than your allowed policy of ${config.policy.critical} `)
     vulnerable = true
   }
 
