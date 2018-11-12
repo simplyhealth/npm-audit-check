@@ -1,6 +1,6 @@
 {
   "name": "npm-audit-check",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Enforces npm audit policies",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,14 @@
   },
   "author": "",
   "license": "Apache 2.0",
+  "keywords": [
+    "audit",
+    "security",
+    "vulnerabilities",
+    "check",
+    "build",
+    "script"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplyhealth/npm-audit-check.git"
