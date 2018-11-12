@@ -7,15 +7,15 @@ Designed to be used within a build process to interrogate the output from ```npm
 
 ```npm-audit-check [options]```
 
-| Option | Optional? | Use |
-| -V, --version | Yes | output the version number
-| -i, --info <info policy> | Yes | Set the maximum number of info vulnerabilities allowed |
-| -l, --low <low policy>  | Yes | Set the maximum number of low vulnerabilities allowed |
-| -m, --moderate <moderate policy> | Yes | Set the maximum number of moderate vulnerabilities allowed |
-| -h, --high <high policy> | Yes | Set the maximum number of high vulnerabilities allowed |
-| -c, --critical <critical policy> | Yes | Set the maximum number of critical vulnerabilities allowed |
-| -t, --test | Yes | Report on level of vulnerabilities but return a success exit code |
-| --help | Yes | Output usage information |
+ Option | Optional? | Use |
+ -V, --version | Yes | output the version number
+ -i, --info <info policy> | Yes | Set the maximum number of info vulnerabilities allowed
+ -l, --low <low policy>  | Yes | Set the maximum number of low vulnerabilities allowed
+ -m, --moderate <moderate policy> | Yes | Set the maximum number of moderate vulnerabilities allowed
+ -h, --high <high policy> | Yes | Set the maximum number of high vulnerabilities allowed
+ -c, --critical <critical policy> | Yes | Set the maximum number of critical vulnerabilities allowed
+ -t, --test | Yes | Report on level of vulnerabilities but return a success exit code
+ --help | Yes | Output usage information
 
 **Note:** Not specifying any maximum vulnerabilities, will mean that npm-audit-check will not perform any checks.
 
