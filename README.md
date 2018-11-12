@@ -30,3 +30,20 @@ This will return an exit code set to 1 (error) if npm audit reports any critical
 ```npm-audit-check --critical 0 --high 5 --moderate 20 -t```<br/>
 As above but the -t option means that the vulnerabilities will be reported but the check will return an exit code set to 0 (success)
 
+### Sample Output
+#### Failure
+```npm-audit-check --low 0 --moderate 0 --high 0 --critical 0
+There are 672 low vulnerabilities which is more than your allowed policy of 0
+There are 36 moderate vulnerabilities which is more than your allowed policy of 0
+There are 20 high vulnerabilities which is more than your allowed policy of 0
+There are 5 critical vulnerabilities which is more than your allowed policy of 0
+---------------------------------
+Run npm audit to get more details
+---------------------------------
+```
+
+#### Success
+```npm-audit-check --critical 10
+---------------------------------------------------
+No vulnerabilities found above the levels specified
+---------------------------------------------------```
