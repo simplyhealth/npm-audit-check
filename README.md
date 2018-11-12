@@ -39,8 +39,7 @@ There are 20 high vulnerabilities which is more than your allowed policy of 0
 There are 5 critical vulnerabilities which is more than your allowed policy of 0
 ---------------------------------
 Run npm audit to get more details
----------------------------------
-```
+---------------------------------```
 
 #### Success
 ```npm-audit-check --critical 10
