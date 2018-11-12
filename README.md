@@ -21,12 +21,12 @@ Designed to be used within a build process to interrogate the output from ```npm
 **Note:** Not specifying any maximum vulnerabilities, will mean that npm-audit-check will not perform any checks.
 
 ### Examples
-```npm-audit-check --critical 0```
+```npm-audit-check --critical 0```<br/>
 This will return an exit code set to 1 (error) if npm audit reports any critical vulnerabilities
 
-```npm-audit-check --critical 0 --high 5 --moderate 20```
+```npm-audit-check --critical 0 --high 5 --moderate 20```<br/>
 This will return an exit code set to 1 (error) if npm audit reports any critical vulnerabilities or more than 5 high vulnerabilities or more than 20 moderate vulnerabilities.
 
-```npm-audit-check --critical 0 --high 5 --moderate 20 -t```
+```npm-audit-check --critical 0 --high 5 --moderate 20 -t```<br/>
 As above but the -t option means that the vulnerabilities will be reported but the check will return an exit code set to 0 (success)
 
