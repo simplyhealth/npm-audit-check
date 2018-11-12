@@ -32,17 +32,21 @@ As above but the -t option means that the vulnerabilities will be reported but t
 
 ### Sample Output
 #### Failure
-```npm-audit-check --low 0 --moderate 0 --high 0 --critical 0
+```
+npm-audit-check --low 0 --moderate 0 --high 0 --critical 0
 There are 672 low vulnerabilities which is more than your allowed policy of 0
 There are 36 moderate vulnerabilities which is more than your allowed policy of 0
 There are 20 high vulnerabilities which is more than your allowed policy of 0
 There are 5 critical vulnerabilities which is more than your allowed policy of 0
 ---------------------------------
 Run npm audit to get more details
----------------------------------```
+---------------------------------
+```
 
 #### Success
-```npm-audit-check --critical 10
+```
+npm-audit-check --critical 10
 ---------------------------------------------------
 No vulnerabilities found above the levels specified
----------------------------------------------------```
+---------------------------------------------------
+```
