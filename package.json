@@ -1,7 +1,7 @@
 {
-  "name": "@simplyhealth/npm-audit-check",
+  "name": "npm-audit-check",
   "version": "1.0.0",
-  "description": "",
+  "description": "Enforces npm audit policies",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,15 @@
     "npm-audit-check": "./cli.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache 2.0",
+  "repository": {
+  "type": "git",
+    "url": "git+https://github.com/simplyhealth/npm-audit-check.git"
+  },
+  "bugs": {
+    "url": "https://github.com/simplyhealth/npm-audit-check/issues"
+  },
+  "homepage": "https://github.com/simplyhealth/npm-audit-check#readme",
   "dependencies": {
     "commander": "^2.19.0"
   }
