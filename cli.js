@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const program = require('commander');
 const { spawn } = require('child_process');
-const chalk = require('chalk')
+const chalk = require('chalk');
+const loadConfig = require('./lib/load-config');
 
 program
   .version('1.0.0')
@@ -11,10 +12,16 @@ program
   .option('-h, --high <high policy>', 'Set the maximum number of high vulnerabilities allowed', parseInt)
   .option('-c, --critical <critical policy>', 'Set the maximum number of critical vulnerabilities allowed', parseInt)
   .option('-t, --test', 'Report on level of vulnerabilities but return a success exit code')
+  .option('-V, --verbose', 'Shows debug information')
   .parse(process.argv);
 
 let audit = spawn('npm', ['audit', '--json'])
 let config = loadConfig(program)
+
+if (program.verbose) {
+  console.log("Security Policy Loaded:")
+  console.table(config.policy)
+}
 
 let output = '';
 
@@ -32,27 +39,27 @@ audit.on('close', (code) => {
   let vulnerable = false
 
   if (config.policy.info !== undefined && output.metadata.vulnerabilities.info > config.policy.info) {
-    console.log(`There are ${output.metadata.vulnerabilities.info} info vulnerabilities which is more than your allowed policy of ${program.info}`)
+    console.log(`There are ${output.metadata.vulnerabilities.info} info vulnerabilities which is more than your allowed policy of ${config.policy.info}`)
     vulnerable = true
   }
 
   if (config.policy.low !== undefined && output.metadata.vulnerabilities.low > config.policy.low) {
-    console.log(`There are ${output.metadata.vulnerabilities.low} low vulnerabilities which is more than your allowed policy of ${program.low}`)
+    console.log(`There are ${output.metadata.vulnerabilities.low} low vulnerabilities which is more than your allowed policy of ${config.policy.low}`)
     vulnerable = true
   }
 
   if (config.policy.moderate !== undefined && output.metadata.vulnerabilities.moderate > config.policy.moderate) {
-    console.log(`There are ${chalk.yellow(output.metadata.vulnerabilities.moderate)} moderate vulnerabilities which is more than your allowed policy of ${chalk.yellow(program.moderate)}`)
+    console.log(`There are ${chalk.yellow(output.metadata.vulnerabilities.moderate)} moderate vulnerabilities which is more than your allowed policy of ${chalk.yellow(config.policy.moderate)}`)
     vulnerable = true
   }
 
   if (config.policy.high !== undefined && output.metadata.vulnerabilities.high > config.policy.high) {
-    console.log(`There are ${chalk.red(output.metadata.vulnerabilities.high)} high vulnerabilities which is more than your allowed policy of ${chalk.red(program.high)}`)
+    console.log(`There are ${chalk.red(output.metadata.vulnerabilities.high)} high vulnerabilities which is more than your allowed policy of ${chalk.red(config.policy.high)}`)
     vulnerable = true
   }
 
   if (config.policy.critical !== undefined && output.metadata.vulnerabilities.critical > config.policy.critical) {
-    console.log(`There are ${chalk.magenta(output.metadata.vulnerabilities.critical)} critical vulnerabilities which is more than your allowed policy of ${chalk.magenta(program.critical)}`)
+    console.log(`There are ${chalk.magenta(output.metadata.vulnerabilities.critical)} critical vulnerabilities which is more than your allowed policy of ${chalk.magenta(config.policy.critical)}`)
     vulnerable = true
   }
 
