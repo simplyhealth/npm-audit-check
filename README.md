@@ -1,3 +1,7 @@
+# ARCHIVED
+03/09/2021
+This repository has been archived. It is now read only. This can be undone if required.
+
 # npm-audit-check
 Enforces npm audit policies
 
